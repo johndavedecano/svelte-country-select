@@ -23,9 +23,9 @@
         --field-focus-border-color
         --field-border-color-disabled
         --field-background-color-disabled
-        --input-disabled-color
+        --field-disabled-color
 
-        --field-input-color
+        --field-color
 
         --list-background-color
         --list-border-radius
@@ -72,3 +72,16 @@
 <CountrySelect label="Select Country" />
 
 <CountrySelect label="Select Country" disabled />
+
+<CountrySelect label="Select Country" value="PH" />
+
+<div id="custom-select">
+  <CountrySelect label="Select Country" customClass="custom">
+    <style>
+      .custom {
+        --item-color-hover: white;
+        --item-background-color-hover: blue;
+      }
+    </style>
+  </CountrySelect>
+</div>

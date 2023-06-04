@@ -41,8 +41,8 @@ Available CSS Variable overrides
 --field-focus-border-color
 --field-border-color-disabled
 --field-background-color-disabled
---input-disabled-color
---field-input-color
+--field-disabled-color
+--field-color
 
 --list-background-color
 --list-border-radius
@@ -50,8 +50,20 @@ Available CSS Variable overrides
 --list-border-width
 --list-border-color
 --list-box-shadow
+
 --item-color-hover
 --item-background-color-hover
+```
+
+```
+  <CountrySelect label="Select Country" customClass="custom">
+    <style>
+      .custom {
+        --item-color-hover: white;
+        --item-background-color-hover: blue;
+      }
+    </style>
+  </CountrySelect>
 ```
 
 ## Props

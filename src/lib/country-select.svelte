@@ -11,7 +11,11 @@
   export let label = "";
   export let placeholder = "";
   export let wrapperClass = "";
+  export let wrapperId = "";
+  export let listId = "";
+  export let listClass = "";
   export let inputClass = "";
+  export let customClass = "";
   export let value = "US";
   export let disabled = false;
   export let search_logic;
@@ -144,16 +148,29 @@
     open = false;
   };
 
-  $: customWrapperClass = classnames(["country-field", wrapperClass]);
+  $: customWrapperClass = classnames([
+    customClass,
+    "country-field",
+    wrapperClass,
+  ]);
 
   $: customInputClass = classnames([inputClass]);
+
+  $: customListClass = classnames([customClass, "country-list", listClass]);
 
   $: selected = countries.find((c) => c.code === value) || {};
 
   $: items = search_countries(search);
 </script>
 
-<div use:calculate_position bind:this={wrapper} class={customWrapperClass}>
+<slot />
+
+<div
+  id={wrapperId}
+  use:calculate_position
+  bind:this={wrapper}
+  class={customWrapperClass}
+>
   {#if label}
     <label for={name}>{label}</label>
   {/if}
@@ -211,9 +228,10 @@
   {#if open}
     <div
       bind:this={options}
+      id={listId}
       role="listbox"
       tabindex="-1"
-      class="country-list"
+      class={customListClass}
       style="top: {offset.height +
         offset.top}px; left: {offset.left}px; width: {offset.width}px "
     >
@@ -272,7 +290,7 @@
   }
 
   .country-field-input input:disabled {
-    color: var(--input-disabled-color, #666666);
+    color: var(--field-disabled-color, #666666);
   }
 
   .country-field-input input {
@@ -281,7 +299,7 @@
     border: none;
     height: 100%;
     width: 100%;
-    color: var(--field-input-color, #666666);
+    color: var(--field-color, #666666);
     background-color: transparent;
   }
 
@@ -314,7 +332,7 @@
   .flag-item {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    padding: var(--item-padding, 12px 16px);
     cursor: pointer;
     user-select: none;
     transition: all 200ms ease-in-out;
