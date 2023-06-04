@@ -67,7 +67,7 @@ Available CSS Variable overrides
 ```
 
 ## Props
-
+- customClass - custom class applied for both all elements. used for css vars
 - wrapperClass - custom wrapper class
 - inputClass - custom input element class
 - search_logic - if you wanna customize the underlying search logic. function accepts the following as argument. "(keyword = string, countries= [])"
